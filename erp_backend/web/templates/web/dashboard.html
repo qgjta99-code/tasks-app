@@ -1,0 +1,34 @@
+{% extends "web/base.html" %}
+
+{% block title %}لوحة التحكم{% endblock %}
+
+{% block content %}
+  <div class="o-pagehead">
+    <div>
+      <div class="o-title">لوحة التحكم</div>
+      <div style="color:var(--odoo-muted);font-size:13px;margin-top:4px;">
+        {% if current_org %}الشركة الحالية: <b>{{ current_org.name }}</b>{% else %}لا توجد شركة مرتبطة بحسابك{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="o-grid">
+    <a class="o-card o-app" href="{% url 'web:items_list' %}" style="text-decoration:none;color:inherit;">
+      <div class="name">المخزون</div>
+      <div class="desc">إدارة الأصناف والمستودعات</div>
+    </a>
+    <a class="o-card o-app" href="{% url 'web:customers_list' %}" style="text-decoration:none;color:inherit;">
+      <div class="name">المبيعات</div>
+      <div class="desc">العملاء (وإضافة فواتير لاحقاً)</div>
+    </a>
+    <a class="o-card o-app" href="{% url 'web:vendors_list' %}" style="text-decoration:none;color:inherit;">
+      <div class="name">المشتريات</div>
+      <div class="desc">الموردون (وإضافة فواتير لاحقاً)</div>
+    </a>
+    <a class="o-card o-app" href="/admin/" style="text-decoration:none;color:inherit;">
+      <div class="name">الإعدادات</div>
+      <div class="desc">لوحة الإدارة (Admin)</div>
+    </a>
+  </div>
+{% endblock %}
+

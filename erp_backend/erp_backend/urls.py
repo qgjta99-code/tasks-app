@@ -26,6 +26,7 @@ org_router.register(r"vendors", VendorViewSet, basename="vendor")
 org_router.register(r"purchase-bills", PurchaseBillViewSet, basename="purchasebill")
 
 urlpatterns = [
+    path("", include("web.urls")),
     path("admin/", admin.site.urls),
     path("api/auth/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),

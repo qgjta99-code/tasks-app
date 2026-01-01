@@ -1,0 +1,40 @@
+{% extends "web/base.html" %}
+
+{% block title %}الموردون{% endblock %}
+
+{% block content %}
+  <div class="o-pagehead">
+    <div class="o-title">الموردون</div>
+    <div class="o-actions">
+      <a class="o-btn primary" href="{% url 'web:vendors_new' %}">إضافة</a>
+    </div>
+  </div>
+
+  <div class="o-card" style="overflow:auto;">
+    <table class="o-table">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الإيميل</th>
+          <th>الجوال</th>
+          <th>الحالة</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+          <tr>
+            <td>{{ r.name }}</td>
+            <td>{{ r.email }}</td>
+            <td>{{ r.phone }}</td>
+            <td>{% if r.is_active %}نشط{% else %}موقوف{% endif %}</td>
+            <td><a class="o-btn" href="{% url 'web:vendors_edit' r.id %}">تعديل</a></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" style="color:var(--odoo-muted);">لا يوجد بيانات</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+

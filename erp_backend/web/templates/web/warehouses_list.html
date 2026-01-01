@@ -1,0 +1,38 @@
+{% extends "web/base.html" %}
+
+{% block title %}المستودعات{% endblock %}
+
+{% block content %}
+  <div class="o-pagehead">
+    <div class="o-title">المستودعات</div>
+    <div class="o-actions">
+      <a class="o-btn primary" href="{% url 'web:warehouses_new' %}">إضافة</a>
+    </div>
+  </div>
+
+  <div class="o-card" style="overflow:auto;">
+    <table class="o-table">
+      <thead>
+        <tr>
+          <th>الكود</th>
+          <th>الاسم</th>
+          <th>الحالة</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+          <tr>
+            <td>{{ r.code }}</td>
+            <td>{{ r.name }}</td>
+            <td>{% if r.is_active %}نشط{% else %}موقوف{% endif %}</td>
+            <td><a class="o-btn" href="{% url 'web:warehouses_edit' r.id %}">تعديل</a></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" style="color:var(--odoo-muted);">لا يوجد بيانات</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+

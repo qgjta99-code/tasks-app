@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="{% static 'web/odoo.css' %}">
+  </head>
+  <body style="display:flex;align-items:center;justify-content:center;padding:18px;">
+    <div class="o-card" style="width:420px;padding:18px;">
+      <div style="font-size:20px;font-weight:800;margin-bottom:10px;">ERP</div>
+      <div style="color:var(--odoo-muted);margin-bottom:14px;">سجّل دخولك للوصول للواجهة</div>
+
+      {% if form.errors %}
+        <div class="o-flash" style="border-color:#ef4444;color:#991b1b;">بيانات الدخول غير صحيحة</div>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="o-form" style="padding:0;">
+          <div class="row" style="grid-template-columns:1fr;gap:6px;">
+            <label for="id_username">اسم المستخدم</label>
+            <input type="text" name="username" autofocus required id="id_username" />
+          </div>
+          <div class="row" style="grid-template-columns:1fr;gap:6px;">
+            <label for="id_password">كلمة المرور</label>
+            <input type="password" name="password" required id="id_password" />
+          </div>
+        </div>
+        <button class="o-btn primary" type="submit" style="width:100%;margin-top:10px;">دخول</button>
+      </form>
+
+      <div style="margin-top:12px;color:var(--odoo-muted);font-size:12px;">
+        ملاحظة: استخدم نفس حساب لوحة الإدارة (admin).
+      </div>
+    </div>
+  </body>
+</html>
+
